@@ -49,7 +49,8 @@ module.exports = {
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'static',
+    assetsSubDirectory: '',
+    // assetsSubDirectory: 'multi-vue-h5/dist/',
     assetsPublicPath: '/',
 
     /**
@@ -72,5 +73,18 @@ module.exports = {
     // `npm run build --report`
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report
+  },
+
+  base: {
+    "isMultiPage": true,
+    "pagesRoot": path.resolve(__dirname, '../src/pages')
+  },
+  dll: {
+    isOk: false,
+    path: path.resolve(__dirname, '../src/units/libs'),
+    libs: [
+      'vue',
+      'vue-router'
+    ]
   }
 }

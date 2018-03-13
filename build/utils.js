@@ -1,8 +1,11 @@
 'use strict'
 const path = require('path')
 const config = require('../config')
+const glob = require('glob')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const packageConfig = require('../package.json')
+const entriePaths = getEntries()
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 exports.assetsPath = function (_path) {
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
@@ -53,7 +56,6 @@ exports.cssLoaders = function (options) {
       return ['vue-style-loader'].concat(loaders)
     }
   }
-
   // https://vue-loader.vuejs.org/en/configurations/extract-css.html
   return {
     css: generateLoaders(),
@@ -97,5 +99,57 @@ exports.createNotifierCallback = () => {
       subtitle: filename || '',
       icon: path.join(__dirname, 'logo.png')
     })
+  }
+}
+
+exports.entries = () => {
+  return entriePaths.extries
+}
+
+exports.htmlPlugins = function() {
+  let templatePaths = entriePaths.templates
+  let arr = []
+  templatePaths.map(template => {
+    let chunkName = template.split(path.sep).slice(-2)[0];
+    arr.push(new HtmlWebpackPlugin({
+      filename: chunkName + '.html',
+      template: template,
+      chunks: ['vendor', 'manifest', chunkName],
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+      },
+      chunksSortMode: 'dependency'
+    }))
+  })
+
+  return arr
+}
+
+
+function getPath(...args) {
+  return path.join(path.resolve(__dirname, '../src'), ...args);
+}
+
+function getEntries() {
+  const files = glob.sync(`${config.base.pagesRoot}/*/*.js`)
+  let extries = {}
+  let templates = []
+
+  files.forEach(function(filePath) {
+    let fileSplits = filePath.split('/');
+    const length = fileSplits.length
+    const folderName = fileSplits[length - 2]
+    const fileName = fileSplits[length - 1]
+
+    extries[folderName] = getPath('pages', folderName, fileName)
+    templates.push(getPath('pages', folderName, 'index.html'))
+  })
+
+  return {
+    extries: extries,
+    templates: templates
   }
 }
