@@ -6,6 +6,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const packageConfig = require('../package.json')
 const entriePaths = getEntries()
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
+const dllConfigs = require('../config/dll.conf')
+
 
 exports.assetsPath = function (_path) {
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
@@ -125,6 +128,17 @@ exports.htmlPlugins = function() {
     }))
   })
 
+  if (dllConfigs.isUsed && process.env.NODE_ENV === 'production') {
+    arr.push(new AddAssetHtmlPlugin([
+      {
+        filepath: dllConfigs.filepath,
+        outputPath: dllConfigs.outputPath,
+        publicPath: dllConfigs.publicPath,
+        includeSourcemap: false
+      }
+    ]))
+  }
+
   return arr
 }
 
@@ -133,6 +147,9 @@ function getPath(...args) {
   return path.join(path.resolve(__dirname, '../src'), ...args);
 }
 
+/*
+* 获取页面入口
+* */
 function getEntries() {
   const files = glob.sync(`${config.base.pagesRoot}/*/*.js`)
   let extries = {}

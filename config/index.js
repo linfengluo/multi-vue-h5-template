@@ -78,13 +78,5 @@ module.exports = {
   base: {
     "isMultiPage": true,
     "pagesRoot": path.resolve(__dirname, '../src/pages')
-  },
-  dll: {
-    isOk: false,
-    path: path.resolve(__dirname, '../src/units/libs'),
-    libs: [
-      'vue',
-      'vue-router'
-    ]
   }
 }
