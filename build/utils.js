@@ -112,6 +112,14 @@ exports.entries = () => {
 exports.htmlPlugins = function() {
   let templatePaths = entriePaths.templates
   let arr = []
+  arr.push(new AddAssetHtmlPlugin([
+    {
+      filepath: path.resolve(__dirname, '../src/units/libs/viewport-units-buggyfill.min.v062.js'),
+      outputPath: dllConfigs.outputPath,
+      publicPath: dllConfigs.publicPath,
+      includeSourcemap: false
+    }
+  ]))
   templatePaths.map(template => {
     let chunkName = template.split(path.sep).slice(-2)[0];
     arr.push(new HtmlWebpackPlugin({

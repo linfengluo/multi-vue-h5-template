@@ -2,6 +2,15 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
+    <div style="display: flex;">
+      <radioDiv class="test">
+        <img src="../assets/logo.png" class="is-full-width">
+      </radioDiv>
+      <radioDiv class="test">
+        <img src="../assets/logo.png" class="is-full-width">
+      </radioDiv>
+    </div>
+
     <ul>
       <li>
         <a
@@ -95,7 +104,11 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" rel="stylesheet/scss">
+  @import "../scss/vw";
+  .test{
+    @include aspect-ratio(750 / 2, 1, 1)
+  }
 h1, h2 {
   font-weight: normal;
 }
