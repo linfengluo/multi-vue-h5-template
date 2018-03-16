@@ -4,9 +4,8 @@ module.exports = {
   "plugins": {
     "postcss-import": {},
     "postcss-url": {},
-    // to edit target browsers: use "browserslist" field in package.json
     "postcss-write-svg": {
-      utf8: false
+      utf8: true
     },
     "postcss-cssnext": {},
     "postcss-px-to-viewport": {

@@ -1,0 +1,70 @@
+/*
+  @pram String $color 颜色
+  @pram String $direction border方向
+  @pram String $ele 伪类
+*/
+@mixin border-1px($color, $direction:'top', $ele:'after'){
+  position:relative;
+  &::#{$ele}{
+    @if $direction == 'top' {
+      left:0;
+      top:0;
+      border-top: 1px solid $color;
+      width:100%;
+    } @else if $direction == 'bottom' {
+      left:0;
+      bottom:0;
+      border-top: 1px solid $color;
+      width:100%;
+    } @else if $direction == 'right' {
+      right:0;
+      top:0;
+      bottom:0;
+      border-right: 1px solid $color;
+      height:100%;
+    } @else {
+      left:0;
+      top:0;
+      bottom:0;
+      border-left: 1px solid $color;
+      height:100%;
+    }
+    display: block;
+    position: absolute;
+    content:' ';
+  }
+
+  @media (-webkit-device-pixel-ratio: 1.5),(min-device-pixel-ratio: 1.5) {
+    &::#{$ele}{
+      @if $direction == 'top' or $direction == 'bottom' {
+        -webkit-transform: scaleY(0.7);
+        transform: scaleY(0.7);
+      } @else {
+        -webkit-transform: scaleX(0.7);
+        transform: scaleX(0.7);
+      }
+    }
+  }
+  @media (-webkit-device-pixel-ratio: 2),(min-device-pixel-ratio: 2) {
+    &::#{$ele}{
+      @if $direction == 'top' or $direction == 'bottom' {
+        -webkit-transform: scaleY(0.5);
+        transform: scaleY(0.5);
+      } @else {
+        -webkit-transform: scaleX(0.5);
+        transform: scaleX(0.5);
+      }
+    }
+  }
+  @media (-webkit-device-pixel-ratio: 3),(min-device-pixel-ratio: 3) {
+    &::#{$ele}{
+      @if $direction == 'top' or $direction == 'bottom' {
+        -webkit-transform: scaleY(0.33);
+        transform: scaleY(0.33);
+      } @else {
+        -webkit-transform: scaleX(0.33);
+        transform: scaleX(0.33);
+      }
+    }
+  }
+}

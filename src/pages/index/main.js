@@ -2,7 +2,6 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import router from './router'
 import radioDiv from '../../components/radioDiv.vue'
 
 Vue.config.productionTip = false
@@ -11,7 +10,6 @@ Vue.component('radioDiv', radioDiv)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  router,
   components: { App },
   template: '<App/>'
 })

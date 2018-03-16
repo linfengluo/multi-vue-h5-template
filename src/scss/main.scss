@@ -1,3 +1,8 @@
 @import "normalize";
-@import "vw";
+@import "mixins/all";
 @import "base";
+
+
+.borderPx{
+  @include border-1px(#999999, 'left');
+}
