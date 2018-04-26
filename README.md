@@ -4,7 +4,7 @@
 
 在看了大漠大大的[分享手淘过年项目中采用到的前端技术](https://www.w3cplus.com/css/taobao-2018-year.html)和[如何在Vue项目中使用vw实现移动端适配](https://www.w3cplus.com/mobile/vw-layout-in-vue.html)的讲解后，动手折腾了这个多页面的VW适配（支持vue-router）。
 
-[Demo](http://image.luolinfeng.com/vue-mutil-h5.png)： 
+[Demo](https://demo.luolinfeng.com/vwMobile/)： 
 ![demo](http://image.luolinfeng.com/vue-mutil-h5.png)
 
 # 特点
