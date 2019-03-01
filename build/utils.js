@@ -5,7 +5,7 @@ const glob = require('glob')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const packageConfig = require('../package.json')
 const entriePaths = getEntries()
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require("html-webpack-plugin-for-multihtml")
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
 const dllConfigs = require('../config/dll.conf')
 
